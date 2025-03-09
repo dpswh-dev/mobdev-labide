@@ -1,13 +1,13 @@
 import { Image, StyleSheet, View } from "react-native";
 import { Button, TextInput } from "react-native-paper";
-
 import { useState } from "react";
 import { router } from "expo-router";
 
-
-export default function HomeScreen() {
+export default function SignUpScreen() {
   const [emailText, setEmailText] = useState("");
+  const [confirmEmailText, setConfirmEmailText] = useState("");
   const [passwordText, setPasswordText] = useState("");
+  const [confirmPasswordText, setConfirmPasswordText] = useState("");
 
   return (
     <View style={styles.mainContainer}>
@@ -25,9 +25,24 @@ export default function HomeScreen() {
           style={styles.textInput}
         />
         <TextInput
+          label="Confirm Email"
+          value={confirmEmailText}
+          onChangeText={setConfirmEmailText}
+          mode="outlined"
+          style={styles.textInput}
+        />
+        <TextInput
           label="Password"
           value={passwordText}
           onChangeText={setPasswordText}
+          mode="outlined"
+          style={styles.textInput}
+          secureTextEntry
+        />
+        <TextInput
+          label="Confirm Password"
+          value={confirmPasswordText}
+          onChangeText={setConfirmPasswordText}
           mode="outlined"
           style={styles.textInput}
           secureTextEntry
@@ -39,19 +54,21 @@ export default function HomeScreen() {
             alert(
               JSON.stringify({
                 email: emailText,
+                confirmEmail: confirmEmailText,
                 password: passwordText,
+                confirmPassword: confirmPasswordText,
               })
             )
           }
         >
-          Sign in
+          Sign up
         </Button>
         <Button
           style={styles.button}
           mode="outlined"
-          onPress={() => router.push("/signup")}
+          onPress={() => router.push("/")}
         >
-          Sign up
+          Sign in
         </Button>
       </View>
     </View>
